@@ -2,37 +2,32 @@ package routes
 
 import (
 	"github.com/skuttleman/gin-server/Godeps/_workspace/src/github.com/gin-gonic/gin"
-  "database/sql"
-  // "encoding/json"
-  "fmt"
+	"github.com/skuttleman/gin-server/services"
+	"database/sql"
 )
 
-func Books(i *gin.RouterGroup, db *sql.DB) {
+func Books(i *gin.RouterGroup) {
 	i.GET("/", func(c *gin.Context) {
-    rows, err := db.Query("SELECT * FROM books")
-    if err != nil {
-      fmt.Println(err)
-      c.JSON(404, gin.H{
-        "error": err.Error(),
-      })
-      return
-    }
-    defer rows.Close()
-    books := []gin.H{}
-    for rows.Next() {
-      var id int
-      var title string
-      err = rows.Scan(&id, &title)
-      books = append(books, gin.H{"id": id, "title": title, })
-    }
-    fmt.Println(books)
+		rows, _ := services.Query("SELECT * FROM books", bookProcess)
   	c.JSON(200, gin.H{
-			"books": books,
+			"books": rows,
 		})
 	})
-	i.GET("/:id", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"book": c.Param("id"),
+  i.GET("/:id", func(c *gin.Context) {
+		rows, _ := services.Query("SELECT * FROM books where id=" + c.Param("id"), bookProcess)
+  	c.JSON(200, gin.H{
+			"books": rows,
 		})
 	})
+}
+
+func bookProcess(records *sql.Rows) []gin.H {
+	items := []gin.H{}
+	for records.Next() {
+		var id int
+		var title string
+		records.Scan(&id, &title)
+		items = append(items, gin.H{"id": id, "title": title, })
+	}
+	return items
 }

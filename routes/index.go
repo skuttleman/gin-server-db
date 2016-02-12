@@ -14,7 +14,6 @@ func Index(i *gin.RouterGroup, db *sql.DB) {
 	i.GET("/:id", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"main": c.Param("id"),
-			// "foo": c.Get("foo"),
 		})
 	})
 }
