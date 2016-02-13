@@ -11,8 +11,18 @@
 			"Rev": "3d002e382355cafc15d706b92899b1961d5b79e9"
 		},
 		{
+			"ImportPath": "github.com/go-sql-driver/mysql",
+			"Comment": "v1.2-171-g267b128",
+			"Rev": "267b128680c46286b9ca13475c3cca5de8f79bd7"
+		},
+		{
 			"ImportPath": "github.com/golang/protobuf/proto",
 			"Rev": "b982704f8bb716bb608144408cff30e15fbde841"
+		},
+		{
+			"ImportPath": "github.com/joho/godotenv",
+			"Comment": "v1-10-g4ed1339",
+			"Rev": "4ed13390c0acd2ff4e371e64d8b97c8954138243"
 		},
 		{
 			"ImportPath": "github.com/manucorporat/sse",

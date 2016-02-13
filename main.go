@@ -2,8 +2,8 @@ package main
 
 import (
 	"github.com/skuttleman/gin-server/Godeps/_workspace/src/github.com/gin-gonic/gin"
-  "github.com/skuttleman/gin-server/routes"
-	_ "github.com/joho/godotenv/autoload"
+	_ "github.com/skuttleman/gin-server/Godeps/_workspace/src/github.com/joho/godotenv/autoload"
+	"github.com/skuttleman/gin-server/routes"
 )
 
 func main() {
