@@ -15,7 +15,7 @@ func init() {
   db, _ = sql.Open("mysql", os.Getenv("DATABASE_URL"))
 }
 
-func Query(query string, fn func(rows *sql.Rows) []gin.H) ([]gin.H, error) {
+func Query(fn func(rows *sql.Rows) []gin.H, query string) ([]gin.H, error) {
   rows, err := db.Query(query)
   if err != nil {
     fmt.Println(err.Error())
